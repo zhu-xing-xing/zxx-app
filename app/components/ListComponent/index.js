@@ -7,7 +7,7 @@ export default class ListComponent extends Component {
 			<div>
 				{
 					this.props.data.map((item, index) => (
-						<ListItem key={index}/>
+						<ListItem key={index} data={item}/>
 					))
 				}
 			</div>
