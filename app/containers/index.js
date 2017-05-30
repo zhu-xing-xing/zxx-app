@@ -4,8 +4,9 @@ import {connect} from 'react-redux';
 
 //动作映射为属性
 import {bindActionCreators} from 'redux'; //绑定ActionCreator组成的对象
-
 import * as Actions from '../actions/userInfo'; //获取所有actionCreator组成的对象
+
+import {getStorage} from '../local';
 
 class App extends Component {
 	constructor() {
@@ -30,12 +31,20 @@ class App extends Component {
 		//先去本地查找是否存储过localstorage,名字叫cityName的
 		//1.第一次没有,赋予一个默认值 杭州
 		//2.将当前的城市存放到redux中
+		let cityName = getStorage('cityName');
+		if(cityName == null){
+			cityName = '杭州';
+		}
+		
+		//页面加载后就设置一个城市
+		this.props.userActions.update({
+			cityName:cityName
+		});
 		
 		this.setState({
 			done: true
 		});
 		
-		console.log(this.props.userActions);
 	}
 }
 
