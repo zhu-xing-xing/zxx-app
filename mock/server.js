@@ -12,3 +12,13 @@ app.get('/api/ad',(req,res)=>{
 // }).then(res=>res.json()).then(data=>{
 //    console.log(data);
 // })
+
+
+let list = require('./home/list');
+//获取列表 需要传递城市,页码(必须有,但是可以任意)
+app.get('/api/list/:city/:page',(req,res)=>{
+	console.log(req.params.city);
+	console.log(req.params.page);
+	
+	res.send(list);
+});

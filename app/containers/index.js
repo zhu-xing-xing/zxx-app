@@ -48,6 +48,7 @@ class App extends Component {
 	}
 }
 
+//将状态(state)和动作(action)以属性的形式传递给了App
 export default connect(
 	state=>{  //mapStateToProps   获取state的属性
 		return {}

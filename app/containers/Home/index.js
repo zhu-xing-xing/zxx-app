@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import HomeHeader from "../../components/HomeHeader/index";
 import Slider from "../../components/Slider/index";
 import Ad from "./subpage/Ad";
+import List from "./subpage/List";
 
 import {connect} from 'react-redux';
 
@@ -12,16 +13,17 @@ class Home extends Component{
 	            <HomeHeader cityName={this.props.userInfo.cityName}/>
 	            <Slider />
 	            <Ad/>
+	            <List cityName={this.props.userInfo.cityName}/>
             </div>
         )
     }
 }
 
-//取出redux中的城市,传递给HomeHeader组件
+//取出redux中的城市名,传递给HomeHeader组件
 export default connect (
 	state=>{
 		return {
-			userInfo:state.userInfo   //取出redux state中的userInfo的数值,赋予给变量userInfo
+			userInfo:state.userInfo   //取出redux state中的userInfo的数值,赋予给变量userInfo(一个对象)
 		}
 	}
 	
