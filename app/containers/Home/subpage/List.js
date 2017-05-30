@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 import {getList} from '../../../fetch/home';
+import ListComponent from "../../../components/ListComponent/index";
 
 export default class List extends Component {
 	constructor() {
@@ -14,7 +15,12 @@ export default class List extends Component {
 	render() {
 		return (
 			<div>
-				List
+				{/*将数据传递给ListComponent组件,让其显示*/}
+				{this.state.data.length ?
+					<ListComponent data={this.state.data}/>
+					:
+					<div>正在加载</div>
+				}
 			</div>
 		)
 	}
@@ -22,10 +28,14 @@ export default class List extends Component {
 	componentDidMount() {
 		this.processData(getList(this.props.cityName, 0));
 	}
+	
 	//处理成功后的逻辑
-	processData(result){
-		result.then(res=>res.json()).then(data=>{
-			console.log(data);
+	processData(result) {
+		result.then(res => res.json()).then(({hasMore, data}) => {
+			this.setState({
+				hasMore,
+				data
+			})
 		})
 	}
 }

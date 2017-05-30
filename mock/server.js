@@ -14,6 +14,7 @@ app.get('/api/ad',(req,res)=>{
 // })
 
 
+//添加了一个接口
 let list = require('./home/list');
 //获取列表 需要传递城市,页码(必须有,但是可以任意)
 app.get('/api/list/:city/:page',(req,res)=>{
