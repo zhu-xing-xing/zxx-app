@@ -39,7 +39,7 @@ export default class List extends Component {
 		this.setState({
 			page:this.state.page+1,
 			isLoading:true  //每次加在更多时,动作就应该为正在加载
-		},()=>{   //这个函数可以获取到最新的页码状态
+		},()=>{   //这个函数可以获取到最新的页码状态 要在回调函数里面获取 异步
 			this.processData(getList(this.props.cityName, this.state.page));
 		})
 	}
