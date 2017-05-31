@@ -33,9 +33,12 @@ class Login extends Component {
 		
 		//如果是从购买进入的,需要跳回购买页
 		if(this.props.match.params.route){  //routes里面设置的  如果指定调回某个页面,就跳
-			this.props.history.push(this.props.match.params.route);
+			//提交到login的路径肯定是通过encode转化后的,那么跳转的时候需要解码
+			this.props.history.push(decodeURIComponent(this.props.match.params.route));
+		}else{
+			//登陆成功,如果没有指定跳回某个页面,就去用户页面
+			this.props.history.push('/user');
 		}
-		this.props.history.push('/user'); //登陆成功,如果没有指定跳回某个页面,就去用户页面
 	}
 	
 	componentDidMount(){
