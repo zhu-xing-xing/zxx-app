@@ -40,3 +40,11 @@ app.get('/api/detail/comment/:id/:page',(req,res)=>{
 	res.send(comment);
 });
 
+
+//评价订单列表 用户名   /api/orderlist/:username
+let orderList = require('./orderlist/orderList');
+app.get('/api/orderlist/:username',(req,res)=>{
+	res.send(orderList);
+})
+
+
