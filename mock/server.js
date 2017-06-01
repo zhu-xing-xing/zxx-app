@@ -2,6 +2,9 @@ let express = require('express');
 let app = express();
 app.listen(3000);
 
+let bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({extended:true}));
+
 let ad = require('./home/ad');  //广告的接口
 app.get('/api/ad',(req,res)=>{
 	res.send(ad);
@@ -45,6 +48,13 @@ app.get('/api/detail/comment/:id/:page',(req,res)=>{
 let orderList = require('./orderlist/orderList');
 app.get('/api/orderlist/:username',(req,res)=>{
 	res.send(orderList);
-})
+});
+
+
+//提交评论
+app.post('/api/comment',(req,res)=>{
+	console.log(req.body);
+	res.send({msg:'ok'});
+});
 
 
