@@ -1,0 +1,32 @@
+.order-list-item{
+  display: flex;
+  padding:10px;
+  color:#666;
+  img,.list-content,.order-button{
+    display: flex;
+    flex:1;
+  }
+  img{
+    width:120px;
+    height:90px;
+  }
+  .list-content{
+    flex-direction: column;
+    margin-left:10px;
+  }
+  .order-button{
+    justify-content: center;  /*水平居中*/
+    align-items: center; /*垂直居中*/
+    button{
+      height:35px;
+      width:60px;
+      background: #e9203d;
+      color:#fff;
+      border:0;
+      border-radius: 5px;
+    }
+    .unselect{
+      background: #ccc;
+    }
+  }
+}
