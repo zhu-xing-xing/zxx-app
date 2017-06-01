@@ -4,13 +4,15 @@ import Comment from "./subpage/Comment";
 import Info from "./subpage/Info";
 import Buy from "../../components/Buy/index";
 import {connect} from 'react-redux';
+import * as Actions from '../../actions/store';
+import {bindActionCreators} from 'redux';
 
 //通过路由渲染的组件都会在this.props上增加很多属性 history,match,location....
 class Detail extends Component{
 	constructor(){
 		super();
 		this.state={
-			isStore:true  //默认没有收藏
+			isStore:false  //默认没有收藏
 		}
 	}
 	
@@ -68,7 +70,24 @@ class Detail extends Component{
     }
     
     store(){  //收藏
-      //验证是否登陆,
+      //验证是否登陆,如果没有登录,让他去登陆;如果登陆成功跳回详情页面
+	    let flag = this.checkLogin();
+	    if(!flag){  //如果没登陆,则跳转到登录页
+		    this.props.history.push('/login/'+encodeURIComponent('/detail/'+this.props.match.params.id));
+	    }
+	    
+	    let id = this.props.match.params.id;
+	    if(this.state.isStore){
+		    //如果收藏过,就移除
+		    this.props.storeActions.remove(id);
+	    }else{
+	    	//如果没收藏过,就添加到store中
+		    this.props.storeActions.add(id);
+	    }
+	    
+	    this.setState({
+		    isStore:!this.state.isStore
+	    })
 	    
     }
 }
@@ -78,6 +97,11 @@ export default connect(
 		return {
 			userInfo:state.userInfo,
 			store:state.store   //这里存放的是收藏的数组
+		}
+	},
+	dispatch=>{
+		return {
+			storeActions:bindActionCreators(Actions,dispatch)
 		}
 	}
 )(Detail);
