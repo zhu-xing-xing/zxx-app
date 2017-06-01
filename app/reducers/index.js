@@ -2,8 +2,10 @@
 //4.最终会传进createstore app/index.js
 import {combineReducers} from 'redux';
 
-import {userInfo} from './userInfo'
+import {userInfo} from './userInfo';
+import {store} from './store';
 
 export default combineReducers({
-	userInfo
+	userInfo,
+	store
 });
